@@ -65,7 +65,7 @@ Todo o estado do cluster fica definido no repositório **clusterion-platform**, 
 Para iniciar, basta rodar um único comando:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/RobertwilliamN/clusterion-platform/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/RobertwilliamN/clusterion/main/install.sh | bash
 ```
 
 Esse processo automatiza:
