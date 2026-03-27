@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 set -e
 
-echo ""
-echo "======================================"
-echo "Clusterion DevOps Platform Installer"
-echo "======================================"
-echo ""
+REPO_URL="https://github.com/RobertwilliamN/clusterion.git"
+INSTALL_DIR="$HOME/.clusterion"
 
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo "Baixando Clusterion..."
 
-source "$BASE_DIR/scripts/detect_os.sh"
-source "$BASE_DIR/scripts/install_docker.sh"
-source "$BASE_DIR/scripts/install_kind.sh"
-source "$BASE_DIR/scripts/install_kubectl.sh"
-source "$BASE_DIR/scripts/create_cluster.sh"
-source "$BASE_DIR/scripts/install_argocd.sh"
-source "$BASE_DIR/scripts/install_argocd_cli.sh"
-source "$BASE_DIR/scripts/bootstrap_gitops.sh"
+if [ -d "$INSTALL_DIR" ]; then
+  echo " Diretório já existe, atualizando..."
+  git -C "$INSTALL_DIR" pull
+else
+  git clone "$REPO_URL" "$INSTALL_DIR"
+fi
 
-echo ""
-echo "Clusterion instalado com sucesso!"
-echo ""
+cd "$INSTALL_DIR"
+
+echo "Executando instalação..."
+
+chmod +x install_local.sh
+bash install_local.sh
+
